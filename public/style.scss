@@ -15,16 +15,22 @@ html,body {
 table, th, td {
   border: black 2px solid;
 }
+
 .table{
   border-collapse: collapse;
   margin: 1% auto;
   width: 90%;
+  background-color: #fff;
 
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
   thead.category {
     font-size: 20px;
     font-weight: bold;
     font-style: italic;
     text-decoration: underline;
+    background-color: #4CE3FE;
 
     .recent,.all-time{
       cursor: pointer;
@@ -41,7 +47,7 @@ table, th, td {
       height: 50px;
       margin-left: 25px;
       float: left;
-      background-color: white;
+      background-color: #fff;
       border: black 1px solid;
     }
   }

@@ -16,12 +16,16 @@ table, th, td {
 .table {
   border-collapse: collapse;
   margin: 1% auto;
-  width: 90%; }
+  width: 90%;
+  background-color: #fff; }
+  .table tr:nth-child(even) {
+    background-color: #f2f2f2; }
   .table thead.category {
     font-size: 20px;
     font-weight: bold;
     font-style: italic;
-    text-decoration: underline; }
+    text-decoration: underline;
+    background-color: #4CE3FE; }
     .table thead.category .recent, .table thead.category .all-time {
       cursor: pointer;
       width: 20%; }
@@ -34,5 +38,5 @@ table, th, td {
       height: 50px;
       margin-left: 25px;
       float: left;
-      background-color: white;
+      background-color: #fff;
       border: black 1px solid; }
