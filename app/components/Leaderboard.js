@@ -7,7 +7,7 @@ class Leaderboard extends Component {
     this.state = {
       topAll: [],
       topRecent: [],
-      category: 'all'
+      category: 'all' //set default
     }
     this.renderTable = this.renderTable.bind(this);
     this.handleTableSort = this.handleTableSort.bind(this);
@@ -46,33 +46,29 @@ class Leaderboard extends Component {
     });
   }
 
-  handleTableSort(category){
-    if(category =='all'){
-      this.setState({category:'all'})
-    }else if(category == 'recent'){
-      this.setState({category:'recent'})
+  handleTableSort(category) {
+    if (category == 'all') {
+      this.setState({category: 'all'})
+    } else if (category == 'recent') {
+      this.setState({category: 'recent'})
     }
-	}
+  }
   renderTable() {
     let order;
-    if(this.state.category == 'all'){
+    if (this.state.category == 'all') {
       order = this.state.topAll;
-    }
-    else if(this.state.category == 'recent'){
+    } else if (this.state.category == 'recent') {
       order = this.state.topRecent;
     }
     return (order.map((user, i) => {
-      return (
-        <tr className='camper' key={user.id}>
-          <th className='key'>{user.id}</th>
-          <th className='username'><img src={user.img} style={styles.image}/> {user.username}</th>
-          <th className='recent'>{user.recentPoints}</th>
-          <th className='all-time'>{user.allTimePoints}</th>
-        </tr>
-      )
+      return (<tr className='camper-row' key={user.id}>
+        <th className='key'>{user.id}</th>
+        <th className='user-row'><img src={user.img}/> <p className='username'>{user.username}</p></th>
+        <th className='recent'>{user.recentPoints}</th>
+        <th className='all-time'>{user.allTimePoints}</th>
+      </tr>)
     })
     );
-
   }
 
   render() {
@@ -80,10 +76,14 @@ class Leaderboard extends Component {
       <table className='table'>
         <thead className='category'>
           <tr>
-            <th>#</th>
-            <th>Camper Name</th>
-            <th onClick={() => this.handleTableSort('recent')} id='recent'>Points in the Past 30 days</th>
-            <th onClick={() => this.handleTableSort('all')} id='all-time'>Points All Time</th>
+            <th className='category-row key'>#</th>
+            <th className='category-row user-row'>Camper Name</th>
+            <th className='category-row recent'
+                onClick={() => this.handleTableSort('recent')}
+                >Points in the Past 30 days</th>
+            <th className='category-row all-time'
+                onClick={() => this.handleTableSort('all')}
+                >Points All Time</th>
           </tr>
         </thead>
         <tbody className='user-row'>
@@ -92,43 +92,5 @@ class Leaderboard extends Component {
       </table>
     </div>);
   }
-  // render() {
-  //   const camperTable = this.state.topAll.map((user, i) => {
-  //     return (
-  //         <tr className="camper" key={user.id}>
-  //           <th className="key">{user.id}</th>
-  //           <th className="username">
-  //             <img src={user.img} style={styles.image} /> {user.username}
-  //           </th>
-  //           <th className="recent">{user.recentPoints}</th>
-  //           <th className="all-time">{user.allTimePoints}</th>
-  //         </tr>
-  //     )
-  //   })
-  //   return (
-  //     <div>
-  //       <table className="table">
-  //         <thead className="category">
-  //           <tr>
-  //             <th>#</th>
-  //             <th>Camper Name</th>
-  //             <th id="recent">Points in the Past 30 days</th>
-  //             <th id="all-time">Points All Time</th>
-  //           </tr>
-  //          </thead>
-  //          <tbody className='user-row' key='test'>
-  //            {camperTable}
-  //          </tbody>
-  //       </table>
-  //     </div>
-  //   )
-  // }
 }
-
-const styles = {
-  image: {
-    height: '50px',
-    width: '50px'
-  }
-};
 export default Leaderboard;
